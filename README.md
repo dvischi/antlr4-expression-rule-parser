@@ -106,7 +106,7 @@ The command line tool can be executed ...
 ... which accepts the following parameters ...
 
 - `--help`: shows the help message
-- `<source_path> [--printCstTraversal]`: evaluates the content of a files located at <source_path> and, optionally, outputs the traversal of the concrete syntax tree (CST)
+- `<source_path> [--printCstTraversal] [--printAstTraversal]`: evaluates the content of a file located at <source_path> and, optionally, outputs the traversal of the concrete/abstract syntax tree (CST/AST)
 
 The following example reads the rules used for the unit tests, evaluates them and prints the traversal of the concrete syntax tree (CST) in the console.
 `java -jar target/antlr4-expression-rule-parser-1.0.0-SNAPSHOT-jar-with-dependencies.jar src/test/resources/test_rules.txt --printCstTraversal`
@@ -114,4 +114,5 @@ The following example reads the rules used for the unit tests, evaluates them an
 ## Attribution
 
 The lexer, parser, listener and visitor for the grammar were generated using ANTLR4 which is released under BSD-3-Clause License.
+
 For further details, please refer to the THIRD_PARTY_LICENSES.txt.
