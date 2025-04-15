@@ -1,6 +1,5 @@
 # Simple Rule Parser
 
-#### Notes:
 The following repository contains an evaluator for a simple rule language. The underlying parser was generated with [ANTLR4](https://www.antlr.org/)
 which converts a source into an AST (abstract syntax tree) of expression rules. Each rule provides an evaluation
 method to traverse the AST and to compute the result of the expression.
@@ -44,11 +43,11 @@ Note: parentheses can be used to overwrite the operator precedences, e.g.: `(1 +
 
 In the global scope, expressions can be used by the following statements:
 
-| Statement           | Definition                                                    | Example                             |
-| ------------------- | ------------------------------------------------------------- | ----------------------------------- |
-| Variable Definition | `var <variable_name> := <expression>;`                        | `var variable_name := 42;`          |
-| Function Definition | `func <function_name> := (<parameter_list>) -> <expression>;` | `func function_name := (i) -> i+1;` |
-| Rule Definition     | `rule <rule_name> := <expression>;`                           | `rule rule_name := f(a);`           |
+| Statement           | Definition                                                    | Example                               |
+| ------------------- | ------------------------------------------------------------- | ------------------------------------- |
+| Variable Definition | `var <variable_name> := <expression>;`                        | `var variable_name := 42;`            |
+| Function Definition | `func <function_name> := (<parameter_list>) -> <expression>;` | `func function_name := (i,j) -> i+j;` |
+| Rule Definition     | `rule <rule_name> := <expression>;`                           | `rule rule_name := f(a);`             |
 
 The definition of rules is the main purpose of this simple language (which maps a rule name with an expression).
 The variables and functions, on the other hand, represent reusable modules for expressions.
