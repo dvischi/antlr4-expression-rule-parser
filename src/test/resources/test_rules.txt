@@ -1,0 +1,10 @@
+var i := 1+1+1+1;
+var j := 4;
+func f := (i,j) -> i / j;
+func g1 := (i) -> g2(i+1);
+func g2 := (i) -> i+1;
+rule rule1 := f(i,j) * 10;
+rule rule2 := ["a",1,2] contains "a";
+rule rule3 := ["a",1,2] contains all ["a",3];
+rule rule4 := 20/2 > f(20,2);
+rule rule5 := g1(g1(2));
