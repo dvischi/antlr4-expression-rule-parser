@@ -14,11 +14,6 @@ public class Add extends BinaryOperator<Expression<Integer>, Expression<Integer>
 	}
 	
 	@Override
-	public Class<?> getType() {
-		return Integer.class;
-	}
-	
-	@Override
 	public Integer eval() {
 		return param1.eval() + param2.eval();
 	}

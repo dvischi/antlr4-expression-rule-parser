@@ -16,11 +16,6 @@ public class Contains extends BinaryOperator<Expression<List<?>>, Expression<?>,
 	}
 	
 	@Override
-	public Class<?> getType() {
-		return Boolean.class;
-	}
-	
-	@Override
 	public Boolean eval() {
 		return param1.eval().contains(param2.eval());
 	}

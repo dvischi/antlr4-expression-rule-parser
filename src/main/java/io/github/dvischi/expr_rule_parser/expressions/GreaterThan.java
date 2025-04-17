@@ -14,11 +14,6 @@ public class GreaterThan extends BinaryOperator<Expression<Integer>, Expression<
 	}
 	
 	@Override
-	public Class<?> getType() {
-		return Boolean.class;
-	}
-	
-	@Override
 	public Boolean eval() {
 		return param1.eval() > param2.eval();
 	}

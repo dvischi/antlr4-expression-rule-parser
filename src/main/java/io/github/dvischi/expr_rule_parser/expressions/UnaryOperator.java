@@ -5,6 +5,8 @@
  */
 package io.github.dvischi.expr_rule_parser.expressions;
 
+import java.lang.reflect.ParameterizedType;
+
 /**
  * A generic operator for one parameter.
  */
@@ -16,6 +18,11 @@ public abstract class UnaryOperator<S extends Expression<?>, T> implements Expre
 	
 	public UnaryOperator(S param) {
 		this.param = param;
+	}
+	
+	@Override
+	public Class<?> getType() {
+		return (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
 	}
 	
 	@Override

@@ -14,11 +14,6 @@ public class Not extends UnaryOperator<Expression<Boolean>, Boolean> {
 	}
 	
 	@Override
-	public Class<?> getType() {
-		return Boolean.class;
-	}
-	
-	@Override
 	public Boolean eval() {
 		return !param.eval();
 	}

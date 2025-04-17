@@ -14,11 +14,6 @@ public class Equals extends BinaryOperator<Expression<?>, Expression<?>, Boolean
 	}
 	
 	@Override
-	public Class<?> getType() {
-		return Boolean.class;
-	}
-	
-	@Override
 	public Boolean eval() {
 		return param1.eval().equals(param2.eval());
 	}
