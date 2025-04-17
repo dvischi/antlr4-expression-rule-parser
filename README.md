@@ -97,7 +97,7 @@ The provided code can be used either as an (1) external library for another proj
 
 The command line tool can be executed ...
 
-1. directly with Maven: `mvn exec:java -Dexec.mainClass=io.github.dvischi.expr_rule_parser.ExprRuleEvaluator -Dexec.args="<parameters>"`
+1. directly with Maven: `mvn exec:java -Dexec.mainClass=io.github.dvischi.expr_rule_parser.CommandLineTool -Dexec.args="<parameters>"`
 2. via the slim JAR:
     1. by copying the required dependencies: `mvn dependency:copy-dependencies -DoutputDirectory=${project.build.directory}/dependency -DincludeScope=runtime`
     2. running the slim JAR: `java -jar target/antlr4-expression-rule-parser-1.0.0-SNAPSHOT.jar <parameters>`
