@@ -20,6 +20,14 @@ public abstract class UnaryOperator<S extends Expression<?>, T> implements Expre
 		this.param = param;
 	}
 	
+	/**
+	 * Method to get the type of the expression during runtime.
+	 * 
+	 * Note: the default implementation uses reflection to resolve the type during runtime.
+	 *       given the slow execution time, it is recommended to explicitly define the type per subclass.
+	 * 
+	 * @return The type of the expression.
+	 */
 	@Override
 	public Class<?> getType() {
 		return (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];

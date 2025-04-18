@@ -15,6 +15,16 @@ public class ContainsAll extends BinaryOperator<Expression<List<?>>, Expression<
 		super(param1, param2);
 	}
 	
+	/**
+	 * Method to get the type of the expression during runtime.
+	 * 
+	 * @return The type of the expression.
+	 */
+	@Override
+	public Class<?> getType() {
+		return Boolean.class;
+	}
+	
 	@Override
 	public Boolean eval() {
 		return param1.eval().containsAll(param2.eval());
