@@ -77,24 +77,19 @@ public class StatementsVisitor extends ExtendedExprRuleParserBaseVisitor<List<Ru
 	public List<Rule<?>> visitRuleStmt(RuleStmtContext ctx) {
 		logContext(ctx, true);
 		
-		Expression<?> condition = new ExpressionVisitor(symbolTable).visitBaseExpr(ctx.baseExpr());
+		Expression<?> ruleDef = new ExpressionVisitor(symbolTable).visitBaseExpr(ctx.baseExpr());
 		
 		Rule<?> rule = null;
-		switch (condition.getType().getSimpleName()) {
-		case "String":
-			rule = new Rule<String>(ctx.ruleName.getText(), castToStringExpression(condition));
-			break;
-		case "Integer":
-			rule = new Rule<Integer>(ctx.ruleName.getText(), castToIntegerExpression(condition));
-			break;
-		case "Boolean":
-			rule = new Rule<Boolean>(ctx.ruleName.getText(), castToBooleanExpression(condition));
-			break;
-		case "List":
-			rule = new Rule<List<?>>(ctx.ruleName.getText(), castToListExpression(condition));
-			break;
-		default:
-			throw new RuntimeException(String.format("Found rule expression with unknown return type '%s'!", condition.getType().getSimpleName()));
+		if (Boolean.class.isAssignableFrom(ruleDef.getType())) {
+			rule = new Rule<Boolean>(ctx.ruleName.getText(), castToBooleanExpression(ruleDef));
+		} else if (Integer.class.isAssignableFrom(ruleDef.getType())) {
+			rule = new Rule<Integer>(ctx.ruleName.getText(), castToIntegerExpression(ruleDef));
+		} else if (String.class.isAssignableFrom(ruleDef.getType())) {
+			rule = new Rule<String>(ctx.ruleName.getText(), castToStringExpression(ruleDef));
+		} else if (List.class.isAssignableFrom(ruleDef.getType())) {
+			rule = new Rule<List<?>>(ctx.ruleName.getText(), castToListExpression(ruleDef));
+		} else {
+			throw new RuntimeException(String.format("Found rule expression with unknown return type '%s'!", ruleDef.getType().getSimpleName()));
 		}
 		return Arrays.asList(rule);
 	}
