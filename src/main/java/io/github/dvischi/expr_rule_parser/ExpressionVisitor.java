@@ -283,7 +283,7 @@ public class ExpressionVisitor extends ExtendedExprRuleParserBaseVisitor<Express
 		case ExprRuleParser.NUMBER:
 			return new Literal<Integer>(Integer.parseInt(ctx.NUMBER().getText()));
 		case ExprRuleParser.STRING:
-			return new Literal<String>(ctx.STRING().getText());
+			return new Literal<String>(ctx.STRING().getText().substring(1, ctx.STRING().getText().length()-1));
 		case ExprRuleParser.WORD:
 			if (ctx.varName != null) {
 				return visitVariableLiteral(ctx);
@@ -305,7 +305,7 @@ public class ExpressionVisitor extends ExtendedExprRuleParserBaseVisitor<Express
 		for (ListItemContext listItemCtx : ctx.listItem()) {
 			switch (getTokenType(listItemCtx, 0)) {
 			case ExprRuleParser.STRING:
-				list.add(listItemCtx.STRING().getText());
+				list.add(listItemCtx.STRING().getText().substring(1, listItemCtx.STRING().getText().length()-1));
 				break;
 			case ExprRuleParser.NUMBER:
 				list.add(Integer.parseInt(listItemCtx.NUMBER().getText()));
