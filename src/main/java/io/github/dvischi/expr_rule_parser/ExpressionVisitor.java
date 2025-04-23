@@ -213,10 +213,10 @@ public class ExpressionVisitor extends ExtendedExprRuleParserBaseVisitor<Express
 	private Expression<?> visitFunctionLiteral(LiteralContext ctx) {
 		FunctionSymbol funcSymbol = (FunctionSymbol) symbolTable.getScopeSymbol(ctx.funcName.getText());
 		if (funcSymbol == null) {
-			throw new RuntimeException(String.format("Symbol '%s' is undefined!", ctx.varName.getText()));
+			throw new RuntimeException(String.format("Symbol '%s' is undefined!", ctx.funcName.getText()));
 		}
 		if (funcSymbol.getType() != Symbol.Type.FUNCTION) {
-			throw new RuntimeException(String.format("Symbol '%s' is not a function!", ctx.varName.getText()));
+			throw new RuntimeException(String.format("Symbol '%s' is not a function!", ctx.funcName.getText()));
 		}
 		
 		// push a new scope with the function parameters
