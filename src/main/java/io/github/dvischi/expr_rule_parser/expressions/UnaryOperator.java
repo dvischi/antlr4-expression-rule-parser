@@ -6,6 +6,7 @@
 package io.github.dvischi.expr_rule_parser.expressions;
 
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * A generic operator for one parameter.
@@ -30,7 +31,12 @@ public abstract class UnaryOperator<S extends Expression<?>, T> implements Expre
 	 */
 	@Override
 	public Class<?> getType() {
-		return (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+		Type type = ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+		if (type instanceof ParameterizedType) {
+			return (Class<?>) ((ParameterizedType) type).getRawType();
+		} else {
+			return (Class<?>) type;
+		}
 	}
 	
 	@Override

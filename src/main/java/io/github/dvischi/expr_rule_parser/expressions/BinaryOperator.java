@@ -6,6 +6,7 @@
 package io.github.dvischi.expr_rule_parser.expressions;
 
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * A generic operator for two parameters.
@@ -35,7 +36,12 @@ public abstract class BinaryOperator<R extends Expression<?>, S extends Expressi
 	 */
 	@Override
 	public Class<?> getType() {
-		return (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[2];
+		Type type = ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[2];
+		if (type instanceof ParameterizedType) {
+			return (Class<?>) ((ParameterizedType) type).getRawType();
+		} else {
+			return (Class<?>) type;
+		}
 	}
 	
 	@Override
